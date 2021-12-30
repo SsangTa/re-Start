@@ -18,41 +18,44 @@ public class Example2 {
 			System.out.println("--------------------------------");
 			System.out.println("1.입금 | 2.출금 | 3.잔액조회 | 4.죵료");
 			System.out.println("--------------------------------");
+			System.out.println("선택>");
 			int menuNo = scanner.nextInt();
 			
+			if(menuNo == 4) {
+				run =false;
+				continue;
+			}
 			
 			
+			System.out.println("비밀번호를 입력하세요.");
+			int PW = scanner.nextInt();
+			if(PW ==1234) {
 			switch(menuNo) {
 			case 1:
-				if(PW == 1234) {
+							
 					System.out.println("입금");
 					balance += scanner.nextInt();
-				}else {
-					System.out.println("비밀번호를 잘못 입력하셨스빈다.");
-				}
+				
 				break;
 			case 2:
-				if(PW == 1234) {
+				
 				System.out.println("출금");
 				balance -= scanner.nextInt();
-				}else {
-					System.out.println("비밀번호를 잘못 입력하셨스빈다.");
-				}
+				
 				break;
 			case 3:
-				if(PW == 1234) {
+				
 				System.out.println("잔액조회" + balance);
-				}else {
-					System.out.println("비밀번호를 잘못 입력하셨스빈다.");
-				}
+				
 				break;
+			
 			case 4:
 				run = false;
 				break;
 			default:
 				
 			}
-			
+			}
 		}
 				
 

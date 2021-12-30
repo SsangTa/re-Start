@@ -10,7 +10,7 @@ public class Example {
 		//If문
 		
 		//예제1 - 점수를 입력받아서 70점 이상이면 합격, 미만이면 불합격
-		/*
+		
 		int score = Integer.parseInt(scanner.nextLine());
 		
 		if(score >=70) {
@@ -18,9 +18,9 @@ public class Example {
 		}else {		
 			System.out.println("불합격");
 		}
-		*/
+		
 		//예제2 - 정수 한개를 입력받아서 해당 점수가 2의 배수인지 확인
-		/*
+		
 		int num = Integer.parseInt(scanner.nextLine());
 		
 		if(num%2 == 0) {
@@ -28,7 +28,7 @@ public class Example {
 		}else {
 			System.out.println("2의 배수가 아닙니다.");
 		}
-		*/
+		
 		
 		//예제3 - 점수는 0~100점 사이의 값이어야 하며 벗어날경우 "점수 입력 오류!" 출력
 		//       60점 이상이면 합격, 미만이면 불합격
@@ -45,7 +45,7 @@ public class Example {
 		} else {
 			System.out.println("점수 입력 오류!");
 		}
-		*/
+		
 		
 		//예제4 - 놀이기구, 키 110cm이상일 경우 라바 트위스터를 탑승
 		//       미만일경우 보호자가 있는지 체크 -> 있으면 탑승
