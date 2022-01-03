@@ -46,8 +46,8 @@ public class ConditionalStatementExample {
 		// 0.0 + 1 <= (Math.random() * 10) + 1 < 10.0 + 1
 		// 1.0 <= (Math.random() * 10) + 1 < 11.0
 		// 1 <= (int)(Math.random() * 10) + 1 < 11
-		// 최소 1부터 n까지의 정주 중에서 랜덤하게 값을 구하고 싶을때
-		// (int)(Math.random() * m(최대값)) + n(최소값)
+		// 최소 n부터 m(m개)까지의 정주 중에서 랜덤하게 값을 구하고 싶을때
+		// (int)(Math.random() * m(m개)) + n(최소값)
 		
 		int num = (int)(Math.random() * 6) + 1;
 		

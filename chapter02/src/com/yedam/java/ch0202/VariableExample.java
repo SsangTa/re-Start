@@ -63,7 +63,7 @@ public class VariableExample {
 		
 		//논리타입
 		
-		boolean stop = false;
+		boolean stop = true;
 		if(stop) {
 			System.out.println("중지합니다.");
 		}else {
