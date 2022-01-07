@@ -32,7 +32,7 @@ public class Abstract2 {
 				계산된 값은 -2
 	*/
 			Adder ad = new Adder();
-			
+			Subtracter Sub = new Subtracter();
 			
 		
 	}

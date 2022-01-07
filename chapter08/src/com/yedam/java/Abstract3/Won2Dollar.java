@@ -1,18 +1,18 @@
 package com.yedam.java.Abstract3;
 
 public class Won2Dollar extends Converter {
-	private int money;
 	
 	
-	public Won2Dollar(int money) {
-		this.money = money;
+	
+	public Won2Dollar(double ratio) {
+		super.ratio = ratio;
 	}
 	
 	
 
 	@Override
 	protected double convert(double src) {
-		return src/money;
+		return src/ratio;
 	}
 
 	@Override

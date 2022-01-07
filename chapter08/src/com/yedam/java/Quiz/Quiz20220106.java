@@ -20,7 +20,7 @@ public class Quiz20220106 {
 		int productsNum = 0;
 		
 		while(run) {
-			System.out.println("1.상품수 | 2.가격입력 | 3.제품별 가격 | 4.분석 | 5.종료");
+			System.out.println("1.상품수 | 2.상품 및 가격입력 | 3.제품별 가격 | 4.분석 | 5.종료");
 			System.out.println("선택 : ");
 			int menuNo = scanner.nextInt();
 			
