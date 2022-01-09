@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.yedam.java.LifoFifo.Product;
+
 
 public class MainExample {
 
@@ -30,7 +30,8 @@ public class MainExample {
 
 		boolean run = true;
 		Scanner scanner = new Scanner(System.in);
-		List<> list = new ArrayList<>();
+		List<Book> list = new ArrayList<Book>();
+		int menNo;
 
 		while (run) {
 			System.out.println("-------------------------------------------------------------");
@@ -42,28 +43,75 @@ public class MainExample {
 			switch (menuNo) {
 			case 1:
 
-				System.out.println("책정보 입력 : ");
-				String name = scanner.next();
+				System.out.println("책이름을 입력 하세요. ");
+				String bookName = scanner.next();
+				System.out.println("책저자를 입력 하세요. ");
+				String author = scanner.next();
 
-				Product product = new Product(name);
-				list.add(product);
+				Book book = new Book(bookName, author);
+				
+				list.add(book);
 
 				break;
 			case 2:
-
+				for(int i=0; i<list.size(); i++) {
+					Book boo = list.get(i);
+					System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : ");
+				}
 				break;
 			case 3:
-
+				
+				while(true) {
+					System.out.println("조회할 책이름을 입력 하세요.");
+					String name = scanner.next();
+					for(int i=0; i<list.size(); i++) {
+						Book boo = list.get(i);
+						if(name.equals(boo.getBookName())){
+							System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : ");
+							break;
+						}else {
+							
+						}
+								
+					}
+					break;
+				}
 				break;
 			case 4:
-
+				System.out.println("대여할 도서명 : ");
+				String q = scanner.next();
+				
+				boolean isExist = true;
+				for(int i=0; i<list.size(); i++) {
+					if(q == list.get(i).getBookName())
+						if(list.get(i).isRental()) {
+							System.out.println(" 대여중 ");
+						}else if((!list.get(i).isRental())){
+							System.out.println("대여 되었습니다.");
+							list.get(i).setRental(true);
+						}
+				}
+				
 				break;
 			case 5:
-
+				System.out.println("반납할 도서명 : ");
+				String w = scanner.next();
+				
+				boolean isExist2 = false;
+				for(int i=0; i<list.size(); i++) {
+					if(w == list.get(i).getBookName())
+						if(!list.get(i).isRental()) {
+							System.out.println("대여중이 아닙니다. ");
+						}else if(list.get(i).isRental()) {
+							System.out.println("반납되었습니다. ");
+							list.get(i).setRental(false);
+						}
+				}
+				
 				break;
 			case 6:
 				run = false;
-				System.out.println(" 종료 ");
+				System.out.println("프로그램 종료 ");
 				break;
 			}
 
