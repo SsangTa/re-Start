@@ -57,7 +57,7 @@ public class MainExample {
 			case 2:
 				for(int i=0; i<list.size(); i++) {
 					Book boo = list.get(i);
-					System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : " );
+					System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : " + boo.isRental());
 				}
 				break;
 			case 3:
