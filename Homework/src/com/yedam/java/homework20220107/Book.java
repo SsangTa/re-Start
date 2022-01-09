@@ -50,10 +50,13 @@ public class Book {
 	}
 
 	public boolean isRental() {
+		boolean rental = true;
+		
 		return rental;
 	}
 
 	public void setRental(boolean rental) {
+		
 		this.rental = rental;
 	}
 

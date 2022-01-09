@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class MainExample {
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 		// 문제) 다음은 도서관리프로그램 중 일부입니다.
 		// 1) 메뉴는 다음과 같이 구성하세요.
@@ -56,7 +57,7 @@ public class MainExample {
 			case 2:
 				for(int i=0; i<list.size(); i++) {
 					Book boo = list.get(i);
-					System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : ");
+					System.out.println("책번호 : " + boo.getBookNum() + " 책이름 : " + boo.getBookName() + " 저자명 : " + boo.getAuthor() + " 대여 여부 : " );
 				}
 				break;
 			case 3:
@@ -80,32 +81,30 @@ public class MainExample {
 			case 4:
 				System.out.println("대여할 도서명 : ");
 				String q = scanner.next();
-				
-				boolean isExist = true;
 				for(int i=0; i<list.size(); i++) {
-					if(q == list.get(i).getBookName())
-						if(list.get(i).isRental()) {
-							System.out.println(" 대여중 ");
-						}else if((!list.get(i).isRental())){
-							System.out.println("대여 되었습니다.");
-							list.get(i).setRental(true);
+					Book num1 = list.get(i);
+					if(num1.getBookName().equals(q)) {
+						if(num1.isRental() == true) {
+							num1.setRental(false);
+							System.out.println(" 대여되었습니다. ");
+						}else {
+							System.out.println(" 대여중입니다. ");
 						}
+					}
 				}
 				
 				break;
 			case 5:
 				System.out.println("반납할 도서명 : ");
 				String w = scanner.next();
-				
-				boolean isExist2 = false;
 				for(int i=0; i<list.size(); i++) {
-					if(w == list.get(i).getBookName())
-						if(!list.get(i).isRental()) {
-							System.out.println("대여중이 아닙니다. ");
-						}else if(list.get(i).isRental()) {
-							System.out.println("반납되었습니다. ");
-							list.get(i).setRental(false);
+					Book num1 = list.get(i);
+					if(num1.getBookName().equals(w)) {
+						if(num1.isRental() == true) {
+							num1.setRental(false);
+							System.out.println(" 반납되었습니다. ");
 						}
+					}
 				}
 				
 				break;
