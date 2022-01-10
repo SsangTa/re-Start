@@ -14,14 +14,13 @@ public class Book {
 	//생성자
 	
 	
-	
-	
 	public Book(String bookName, String author) {
+		serialNum++;
+		this.bookNum = serialNum;
 		this.bookName = bookName; 
 		this.author = author;
-		rental = false;
-		serialNum++;
-		bookNum = serialNum;
+		this.rental = false;
+		
 		
 	}
 
@@ -50,8 +49,6 @@ public class Book {
 	}
 
 	public boolean isRental() {
-		boolean rental = true;
-		
 		return rental;
 	}
 
