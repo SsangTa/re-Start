@@ -1,22 +1,27 @@
 package com.yedam.java.test04;
 
-public class Work {
+public class Work1 {
 	private static int serialNum = 0;
 	
-	private int workNo;
-	private String workName;
-	private String title;
-	private boolean complete;
+	private int workNo;       //번호
+	private String workName;  //할일
+//	private String title;
+	private boolean complete; //완료여부
 	
 	
-	public Work(String workName, String title) {
+	public Work1(String workName) {
 		serialNum++;
 		this.workNo = serialNum;
 		this.workName = workName; 
-		this.title = title;
+//		this.title = title;
 		this.complete = false;
 		
 		
+	}
+
+
+	public void Work(String workName2) {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -40,14 +45,14 @@ public class Work {
 	}
 
 
-	public String getTitle() {
-		return title;
-	}
+//	public String getTitle() {
+//		return title;
+//	}
 
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
 
 
 	public boolean isComplete() {

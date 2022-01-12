@@ -1,35 +1,19 @@
 package com.yedam.java.test02;
 
 public class DGBCard extends Card {
-	public int CVC;
+	private String company = "대구은행";
+	private String cardStaff;
 	
-	public DGBCard(int cardNo, int valiDate, int CVC) {
+	public DGBCard(String cardNo, int valiDate, int CVC, String cardStaff) {
 		super(cardNo, valiDate, CVC);
+		this.cardStaff = cardStaff;
 		
 	}
 
 	@Override
-	public int getCardNo() {
-		// TODO Auto-generated method stub
-		return super.getCardNo();
+	public void showCardInfo() {
+		super.showCardInfo();
+		System.out.println("담당직원 - " + cardStaff + ", " + company);
 	}
 
-	@Override
-	public int getValidDate() {
-		// TODO Auto-generated method stub
-		return super.getValidDate();
-	}
-
-	@Override
-	public int getCVC() {
-		// TODO Auto-generated method stub
-		return super.getCVC();
-	}
-
-	@Override
-	public void showCardinfo() {
-		String cardStaff = null;
-		String valiDate = null;
-		System.out.println("카드정보 (Card NO : " + cardNo + ", 유효기간 : "+ valiDate + ", CVC : "+ CVC + "담당직원 - " + cardStaff);
-	}
 }

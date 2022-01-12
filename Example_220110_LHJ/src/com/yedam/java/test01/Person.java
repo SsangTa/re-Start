@@ -1,24 +1,28 @@
 package com.yedam.java.test01;
 
 public class Person {
-	private int ssn;
+	//필드
+	private String ssn;
 	private String name;
 	private String address;
 	
+	//생성자
+	public Person() {}
 	
-	public Person(int ssn,String name,String address) {
+	
+	public Person(String ssn,String name,String address) {
 		this.ssn = ssn;
 		this.name = name;
 		this.address = address;
 	}
 
-
-	public int getSsn() {
+	//메서드
+	public String getSsn() {
 		return ssn;
 	}
 
 
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 

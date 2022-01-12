@@ -1,47 +1,23 @@
 package com.yedam.java.test02;
 
 public class TossCard extends Card {
-	
-	public TossCard(int cardNo, int validDate, int CVC) {
-		super(cardNo, validDate, CVC);
-		// TODO Auto-generated constructor stub
-	}
-
-
+	//필드
 	private String company;
 	private String cardStaff;
 	
-	
-	public void TossCard(String company, String cardStaff) {
-		this.company = company;
+	//생성자
+	public TossCard(String cardNo, int validDate, int cvc, String cardStaff) {
+		super(cardNo, validDate, cvc);
 		this.cardStaff = cardStaff;
-		
+		this.company = "Toss";
 	}
-
 
 	@Override
-	public int getCardNo() {
-		// TODO Auto-generated method stub
-		return super.getCardNo();
+	public void showCardInfo() {
+		System.out.println("카드정보 - Card No," + cardNo);
+		System.out.println("담당직원 - " + cardStaff + ", " + company);
 	}
 
 
-	@Override
-	public int getValidDate() {
-		// TODO Auto-generated method stub
-		return super.getValidDate();
-	}
-
-
-	@Override
-	public int getCVC() {
-		// TODO Auto-generated method stub
-		return super.getCVC();
-	}
-
-
-	@Override
-	public void showCardinfo() {
-		System.out.println("카드정보 : " + cardNo + "담당직원 : " + cardStaff);
-	}
+	
 }

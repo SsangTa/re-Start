@@ -1,40 +1,31 @@
 package com.yedam.java.test02;
 
 public class Card {
-	protected int cardNo;
-	private int validDate;
-	private int CVC;
+	//필드
+	protected String cardNo;
+	protected int validDate;
+	protected int cvc;
 	
-	
-	public Card(int cardNo, int validDate, int CVC) {
+	//생성자
+	public Card(String cardNo, int validDate, int cvc) {
 		this.cardNo = cardNo;
-		this.validDate = validDate;
-		this.CVC = CVC;
-		
+		this.validDate= validDate;
+		this.cvc =cvc;
 	}
-
-
-	public void Card(int cardNo2, int valiDate, int cVC2) {
-		// TODO Auto-generated constructor stub
-	}
-
-
-	public int getCardNo() {
+    //메서드
+	public String getCardNo() {
 		return cardNo;
 	}
-
 
 	public int getValidDate() {
 		return validDate;
 	}
 
-
-	public int getCVC() {
-		return CVC;
+	public int getCvc() {
+		return cvc;
 	}
 	
-	
-	public void showCardinfo() {
-		System.out.println("Cadr No : "+ cardNo + ", 유효기간 : " + validDate + ", CVC : " + CVC);
+	public void showCardInfo() {
+		System.out.printf("카드정보 ( Card No : %s, 유효기간 : %d, CVC : %d\n", cardNo, validDate, cvc);
 	}
 }

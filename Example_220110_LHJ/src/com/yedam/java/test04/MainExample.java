@@ -11,9 +11,10 @@ public class MainExample {
 	public static void main(String[] args) {
 		boolean run = true;
 		Scanner scanner = new Scanner(System.in);
-		List<Work> list = new ArrayList<>();
-		int menNo;
-		
+		List<Work1> list = new ArrayList<>();
+
+		Work1 work =null;
+		int workNo =0;
 		
 		while (run) {
 			System.out.println("=== 1.할일입력 | 2.전체조회 | 3.할일조회 | 4.할일완료 | 5.종료 ===");
@@ -24,51 +25,33 @@ public class MainExample {
 			case 1:
 				System.out.println("할일 > ");
 				String workName = scanner.nextLine();
-				System.out.println(" ");
-				String title = scanner.nextLine();
-				
-                Work work = new Work(workName, title);
-				
+				work = new Work1(workName);
 				list.add(work);
-				
-				
 				break;
 			case 2:
-				for(int i=0; i<list.size(); i++) {
-					Work wor = list.get(i);
-					System.out.println(wor.getWorkNo() +"  "+ wor.getWorkName() +"  "+ wor.getTitle() +"  "+ (wor.isComplete() ? "완료" : "미완료"));
+				for(Work1 w : list) {
+					System.out.println(w.getWorkNo() + "번 " + w.getWorkName() + " " + (w.isComplete() ? "완료" : "미완료"));
 				}
 				
 				break;
 			case 3:
-				while(true) {
-					System.out.println("조회할일 선택");
-					String name = scanner.nextLine();
-					for(int i=0; i<list.size(); i++) {
-						Work wor = list.get(i);
-						if(name.equals(wor.getWorkName())){
-							System.out.println(wor.getWorkNo() +"  "+ wor.getWorkName() +"  "+ wor.getTitle() +"  "+ (wor.isComplete() ? "완료" : "미완료"));
-							break;
-						}else {
-							
-						}
-								
-					}
-					break;
+				for(Work1 w : list) {
+					if(!w.isComplete()) {
+				    	System.out.println(w.getWorkNo() + "번 " + w.getWorkName() + " " + (w.isComplete() ? "완료" : "미완료"));
+				    }
 				}
 				break;
 				
-				
 			case 4:
-				System.out.println("완료 할 일을 선택해주세요> ");
-				String q = scanner.nextLine();
-				for(Work workTemp : list) {
-					if(workTemp.getWorkName().equals(q)) {
-						if(workTemp.isComplete()) {
-							System.out.println("해당할일을 완료처리하였습니다.");
+				System.out.print("완료 할 일을 선택해주세요> ");
+				workNo = Integer.parseInt(scanner.nextLine());
+				for(Work1 w : list) {
+					if(w.getWorkNo() == workNo) {
+						if(w.isComplete()) {
+							System.out.println("해당 할 일은 이미 완료되었습니다.");
 						}else {
-							workTemp.setComplete(true);
-							System.out.println("해당 할일은 이미 완료되었습니다.");
+							w.setComplete(true);
+							System.out.println("해당 할 일은 완료처리하였습니다.");
 						}
 					}
 				}
