@@ -87,6 +87,4 @@ public class Employee {
 				+ salary + ", commissionPct=" + commissionPct + ", managerId=" + managerId + ", departmentId="
 				+ departmentId + "]";
 	}
-	
-	
 }

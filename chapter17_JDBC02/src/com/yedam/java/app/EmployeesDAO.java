@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.sqlite.SQLiteException;
 
+import com.yedam.app.employee.Employee;
+
 public class EmployeesDAO {
 	//sqlite 연결정보
 	String jdbc_driver = "org.sqlite.JDBC";

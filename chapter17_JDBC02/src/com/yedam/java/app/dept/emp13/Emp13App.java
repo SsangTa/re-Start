@@ -1,18 +1,16 @@
-package com.yedam.java.app;
+package com.yedam.java.app.dept.emp13;
 
 import java.util.List;
 import java.util.Scanner;
 
-import com.yedam.app.employee.Employee;
-
-public class EmployeeApp {
+public class Emp13App {
 
 	public static void main(String[] args) {
 		boolean run = true;
 		Scanner scanner = new Scanner(System.in);
-		EmployeesDAO dao = EmployeesDAO.getInstance();
+		Emp13DAO dao = Emp13DAO.getInstance();
 		
-		Employee emp = null;
+		Emp13 emp = null;
 		int employeeId = 0;
 		while(run) {
 			System.out.println();
@@ -22,41 +20,33 @@ public class EmployeeApp {
 			
 			switch(menuNo) {
 			case 1:
-				emp = new Employee();
+				emp = new Emp13();
 				System.out.println("사번 > ");
 				emp.setEmployeeId(scanner.nextInt());
 				System.out.println("이름 > ");
 				emp.setFirstName(scanner.next());
-				System.out.println("성 > ");
-				emp.setLastName(scanner.next());
-				System.out.println("이메일 > ");
-				emp.setEmail(scanner.next());
-				System.out.println("전화번호 > ");
-				emp.setPhoneNumber(scanner.next());
-				System.out.println("입사일 > ");
-				emp.setHireDate(scanner.next());
 				System.out.println("직급 > ");
 				emp.setJobId(scanner.next());
 				System.out.println("연봉 > ");
 				emp.setSalary(scanner.nextInt());
 				System.out.println("상여 > ");
 				emp.setCommissionPct(scanner.next());
-				System.out.println("상사 > ");
-				emp.setManagerId(scanner.next());
 				System.out.println("부서 > ");
-				emp.setDepartmentId(scanner.next());
+				emp.setDepartmentName(scanner.next());
+				System.out.println("지역번호 > ");
+				emp.setLocationId(scanner.nextInt());
 				
 				dao.insert(emp);
+				
 				break;
 			case 2:
-				emp = new Employee();
+				emp = new Emp13();
 				System.out.println("사번 > ");
 				emp.setEmployeeId(scanner.nextInt());
-				System.out.println("연봉 > ");
-				emp.setSalary(scanner.nextInt());
+				System.out.println("이름 > ");
+				emp.setFirstName(scanner.next());
 				
 				dao.update(emp);
-				
 				break;
 			case 3:
 				System.out.println("사번 > ");
@@ -69,9 +59,9 @@ public class EmployeeApp {
 				System.out.println(emp);
 				break;
 			case 5:
-				List<Employee> list = dao.selectAll();
-				for(Employee employee : list) {
-					System.out.println(employee);
+				List<Emp13>list = dao.selectAll();
+				for(Emp13 emp13 : list) {
+					System.out.println(emp13);
 				}
 				break;
 			case 9:
