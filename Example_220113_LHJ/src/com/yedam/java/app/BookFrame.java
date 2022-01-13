@@ -11,7 +11,7 @@ public class BookFrame {
 	private Scanner scanner = new Scanner(System.in);
 	private BookDAO dao = BookDAOImpl.getInstance();
 
-	public void run() {
+	public BookFrame() {
 		while (true) {
 			// 메뉴출력
 			menuPrint();
@@ -31,7 +31,7 @@ public class BookFrame {
 			}else if(menuNo == 6) {
 				returnBook();
 			}else if(menuNo == 7) {
-				insert();
+				insertBook();
 			}else if(menuNo == 9) {
 				end();
 				break;
@@ -68,12 +68,13 @@ public class BookFrame {
 	}
 	
 	public void selectOne() {
-		String bookName = dao.selectOne(bookName);
 		
-		if(bookName == null) {
+		Book boo = dao.selectOne(bookName);
+		
+		if(boo == null) {
 			System.out.println("해당책은 존재하지 않습니다.");
 		}else {
-			System.out.println(bookName);
+			System.out.println(boo);
 		}
 	}
 	
@@ -116,9 +117,9 @@ public class BookFrame {
 		
 	}
 	
-	public void insert() {
-		Book book = inputBookInfo();
-		dao.insert(book);
+	public void insertBook() {
+		Book boo = inputBookInfo();
+		dao.insertBook(boo);
 		
 	}
 	
@@ -127,14 +128,16 @@ public class BookFrame {
 	}
 	
 	public Book inputBookInfo() {
-		Book book = new Book();
+		Book boo = new Book();
 		System.out.println("책제목>");
-		book.setBookName(scanner.nextLine());
+		boo.setBookName(scanner.nextLine());
 		System.out.println("저자명>");
-		book.setBookWriter(scanner.nextLine());
+		boo.setBookWriter(scanner.nextLine());
 		System.out.println("내용>");
-		book.setBookContent(scanner.nextLine());
-		return book;
+		boo.setBookContent(scanner.nextLine());
+		boo.setBookRental(0);
+		
+		return boo;
 		
 	}
 

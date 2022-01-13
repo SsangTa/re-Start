@@ -12,7 +12,7 @@ public interface BookDAO {
 	public Book selectOne(String bookName);
 	
 	//책등록
-	public void insert(Book book);
+	public void insertBook(Book book);
 	
 	//내용검색
 	public void searchBook(Book book);

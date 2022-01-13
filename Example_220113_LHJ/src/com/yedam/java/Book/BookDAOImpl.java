@@ -74,15 +74,16 @@ public class BookDAOImpl extends DAO implements BookDAO {
 	}
 
 	@Override
-	public void insert(Book book) {
+	public void insertBook(Book book) {
 		try {
 			connect();
-			String insert = "INSERT INTO book VALUES (?,?,?,?)";
+			String insert = "INSERT INTO book VALUES (?,?,?)";
 			pstmt = conn.prepareStatement(insert);
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getBookWriter());
 			pstmt.setString(3, book.getBookContent());
 			pstmt.setInt(4, book.getBookRental());
+			
 			
 			int result = pstmt.executeUpdate();
 			System.out.println(result + "건이 등록되었습니다.");
