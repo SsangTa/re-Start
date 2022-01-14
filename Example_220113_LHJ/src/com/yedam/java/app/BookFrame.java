@@ -17,21 +17,28 @@ public class BookFrame {
 			menuPrint();
 			// 메뉴선택
 			int menuNo = menuSelect();
-			
+			// 각메뉴별 실행
 			if(menuNo == 1) {
-				selectAll();
+				//전체조회
+				selectBookList();
 			}else if(menuNo == 2) {
-				selectOne();
+				//단건조회
+				selectBookInfo();
 			}else if(menuNo == 3) {
-				searchBook();
+				//내용검색
+				selectsearchBookList();
 			}else if(menuNo == 4) {
-				rentalBook();
+				//대여가능
+				selectrentalBookList();
 			}else if(menuNo == 5) {
-				borrowBook();
+				//책대여
+				rentalBook();
 			}else if(menuNo == 6) {
+				//책 반납
 				returnBook();
 			}else if(menuNo == 7) {
-				insertBook();
+				//등록
+				insertBookInfo();
 			}else if(menuNo == 9) {
 				end();
 				break;
@@ -58,87 +65,123 @@ public class BookFrame {
 		}
 		return menuNo;
 	}
-	
-	public void selectAll() {
+	//전체조회
+	public void selectBookList() {
 		List<Book>list = dao.selectAll();
 		
 		for(Book book : list) {
 			System.out.println(book);
 		}
 	}
-	
-	public void selectOne() {
+	//단건조회
+	public void selectBookInfo() {
+		//책제목 입력
+		String bookName = inputBookName();
 		
-		Book boo = dao.selectOne(bookName);
+		Book book = dao.selectBook(bookName);
 		
-		if(boo == null) {
-			System.out.println("해당책은 존재하지 않습니다.");
+		if(book != null) {
+			System.out.println(book);
 		}else {
-			System.out.println(boo);
+			System.out.println("해당 하는 정보가 존재하지 않습니다.");
 		}
-	}
-	
-	public void searchBook() {
-		String word = scanner.next();
 		
-		if(word == bookName) {
-			System.out.println(dao.selectAll()){
-				
-			}else if(word == bookContent) {
-				System.out.println(dao.selectAll()){
-					
-				}else {
-					System.out.println("검색된 책이 없습니다.");
-				}
+	}
+	//내용검색
+	public void selectsearchBookList() {
+		String keyword = inputBookKeyword();
+		
+		List<Book>list = dao.selectAll();
+		for(Book book : list) {
+			if(book.getBookContent().indexOf(keyword) != -1) {
+				System.out.println(book);
 			}
-			
 		}
-				
 	}
 	
+	//대여가능
+	public void selectrentalBookList() {
+		List<Book>list = dao.selectAll();
+		for(Book book : list) {
+			if(book.getBookRental() == 0) {
+				System.out.println(book);
+			}
+		}
+	}
+	
+	
+	//대여	
 	public void rentalBook() {
-		for (Book book : list) {
-			if (book.getBookName().equals(name)) {
-				if (book.isRental()) {
-					System.out.println("해당책은 대여중입니다.");
-				} else {
-					book.setRental(true);
-					System.out.println("대여되었습니다.");
-				}
+		//책 제목 입력
+		String bookName = inputBookName();
+		//해당 책 정보 조회
+		Book book = dao.selectBook(bookName);
+		//대여 여부 확인
+		if(book != null) {
+			//대여가 된경우 
+			if(book.getBookRental() == 1) {
+				System.out.println("해당 책은 대여중 입니다.");
+			}else {
+				//대여가 안된 경우 대여처리
+				book.setBookRental(1);
+				dao.update(book);
 			}
+		}else {
+			System.out.println("해당 하는 정보가 존재하지 않습니다.");
+		}
+	}	
+	public void returnBook() {
+		//책 제목 입력
+		String bookName = inputBookName();
+		//해당 책 정보확인
+		Book book = dao.selectBook(bookName);
+		
+		if(book != null) {
+			//반납처리
+			book.setBookRental(0);
+			dao.update(book);
+		}else {
+			System.out.println("해당 하는 정보가 존재하지 않습니다.");
 		}
 	}
 	
-	public void borrowBook() {
-		
-	}
-	
-	public void returnBook() {
-		
-	}
-	
-	public void insertBook() {
-		Book boo = inputBookInfo();
-		dao.insertBook(boo);
-		
+
+			
+	public void insertBookInfo() {
+		//책 정보 입력
+		Book book = inputBookInfo();
+		//책 정보 등록
+		dao.insert(book);
 	}
 	
 	public void end() {
 		System.out.println("프로그램 종료");
 	}
+		
+	
+	
+	
 	
 	public Book inputBookInfo() {
-		Book boo = new Book();
+		Book book = new Book();
 		System.out.println("책제목>");
-		boo.setBookName(scanner.nextLine());
+		book.setBookName(scanner.nextLine());
 		System.out.println("저자명>");
-		boo.setBookWriter(scanner.nextLine());
+		book.setBookWriter(scanner.nextLine());
 		System.out.println("내용>");
-		boo.setBookContent(scanner.nextLine());
-		boo.setBookRental(0);
-		
-		return boo;
+		book.setBookContent(scanner.nextLine());
+		return book;
 		
 	}
-
+	
+	
+	public String inputBookName() {
+		System.out.println("책제목>");
+		return scanner.nextLine();
+	}
+	
+	public String inputBookKeyword() {
+		System.out.println("검색>");
+		return scanner.nextLine();
+	}
 }

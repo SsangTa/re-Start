@@ -33,9 +33,10 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return " 책제목 : " + bookName + ", 저자명 : " + bookWriter + ", 내용 : " + bookContent
-				+ ", 대여여부 : " + bookRental ;
+		
+		return "책제목 : " + bookName + ", 저자명 : "+ bookWriter + ", 내용 : " + bookContent + ", 대여여부 : "  + (bookRental == 1? "대여중 " : "대여가능");
 	}
+	
 	
 	
 	

@@ -9,16 +9,13 @@ public interface BookDAO {
 	public List<Book> selectAll();
 	
 	//단건조회
-	public Book selectOne(String bookName);
-	
+	public Book selectBook(String bookName);
+		
 	//책등록
-	public void insertBook(Book book);
+	public void insert(Book book);
 	
-	//내용검색
-	public void searchBook(Book book);
-	
-	//대여가능 /책대여 / 책반납
-	public void rentalBook(Book book);
+	//수정
+	public void update(Book book);
 	
 	
 	

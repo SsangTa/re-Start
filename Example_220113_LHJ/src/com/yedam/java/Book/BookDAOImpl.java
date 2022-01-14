@@ -9,7 +9,7 @@ import com.yedam.java.common.DAO;
 
 public class BookDAOImpl extends DAO implements BookDAO {
 	
-	private Scanner scanner = new Scanner(System.in);
+	
 	
 	
 	
@@ -30,13 +30,13 @@ public class BookDAOImpl extends DAO implements BookDAO {
 			pstmt = conn.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Book boo = new Book();
-				boo.setBookName(rs.getString("book_name"));
-				boo.setBookWriter(rs.getString("book_writer"));
-				boo.setBookContent(rs.getString("book_content"));
-				boo.setBookRental(rs.getInt("book_rental"));
+				Book book = new Book();
+				book.setBookName(rs.getString("book_name"));
+				book.setBookWriter(rs.getString("book_writer"));
+				book.setBookContent(rs.getString("book_content"));
+				book.setBookRental(rs.getInt("book_rental"));
 				
-				list.add(boo);
+				list.add(book);
 				
 			}
 			
@@ -48,36 +48,14 @@ public class BookDAOImpl extends DAO implements BookDAO {
 		return list;
 	}
 
-	@Override
-	public Book selectOne(String bookName) {
-		Book boo = null;
-		try {
-			connect();
-			String select = "SELECT * FROM book WHERE book_name = ?";
-			pstmt = conn.prepareStatement(select);
-			pstmt.setString(1, bookName);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				boo = new Book();
-				boo.setBookName(rs.getString("book_name"));
-				boo.setBookWriter(rs.getString("book_writer"));
-				boo.setBookContent(rs.getString("book_content"));
-				boo.setBookRental(rs.getInt("book_rental"));
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			disconnect();
-		}
-		return boo;
-	}
+	
+	
 
 	@Override
-	public void insertBook(Book book) {
+	public void insert(Book book) {
 		try {
 			connect();
-			String insert = "INSERT INTO book VALUES (?,?,?)";
+			String insert = "INSERT INTO book VALUES (?,?,?,?)";
 			pstmt = conn.prepareStatement(insert);
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getBookWriter());
@@ -86,29 +64,9 @@ public class BookDAOImpl extends DAO implements BookDAO {
 			
 			
 			int result = pstmt.executeUpdate();
-			System.out.println(result + "건이 등록되었습니다.");
 			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			disconnect();
-		}
-	}
-
-	@Override
-	public void searchBook(Book book) {
-		
-		try {
-			connect();
-			String select = "SELECT * FROM book WHERE book_name = ? AND book_content = ? ";
-			pstmt = conn.prepareStatement(select);
-			pstmt.setString(1, book.getBookName());
-			pstmt.setString(2, book.getBookContent());
-
-			String word = scanner.next();
-			
-			if(word !=null) {
-				System.out.printf(book.getBookName(),book.getBookWriter(),book.getBookContent(),book.getBookRental());
+			if(result > 0) {
+				System.out.println("정상 등록되었습니다.");
 			}
 			
 			
@@ -117,22 +75,21 @@ public class BookDAOImpl extends DAO implements BookDAO {
 		}finally {
 			disconnect();
 		}
-
 	}
-
+	
 	@Override
-	public void rentalBook(Book book) {
+	public void update(Book book) {
 		try {
 			connect();
-			String update = "UPDATE book SET book_rental = ?";
+			String update = "UPDATE book SET book_rental = ? WHERE book_name = ? ";
 			pstmt = conn.prepareStatement(update);
 			pstmt.setInt(1, book.getBookRental());
-			int bookRental = 0;
-			if(bookRental == 0) {
-				System.out.println("대여가능합니다.");
-			}else if(bookRental == 1){
-				System.out.println("해당 책은 대여중입니다.");
-				
+			pstmt.setString(2, book.getBookName());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("정상 처리 되었습니다.");
 			}
 			
 		}catch(SQLException e) {
@@ -140,6 +97,34 @@ public class BookDAOImpl extends DAO implements BookDAO {
 		}finally {
 			disconnect();
 		}
+	
 	}
+	@Override
+	public Book selectBook(String bookName) {
+		Book book = null;
+		try {
+			connect();
+			String select ="SELECT *FROM  book WHERE book_name = ?";
+			pstmt = conn.prepareStatement(select);
+			pstmt.setString(1, bookName);
+			rs = pstmt.executeQuery();
+					
+			if (rs.next()) {
+				book = new Book();
+				book.setBookName(rs.getString("book_name"));
+				book.setBookWriter(rs.getString("book_writer"));
+				book.setBookContent(rs.getString("book_content"));
+				book.setBookRental(rs.getInt("book_rental"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return book;
+	}
+
+	
 
 }
