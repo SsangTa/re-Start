@@ -33,5 +33,30 @@ public class SignupDAOImpl extends DAO implements SignupDAO {
 		}
 
 	}
+	
+	public int login(String id, String pw) {
+		String select = "SELECT pw FROM signup WHERE id = ?";
+		try {
+			pstmt = conn.prepareStatement(select);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(pw)) {
+					return 1; //로그인 성공
+				}else {
+					return 0; //비밀번호 불일치
+				}
+			}
+			return -1; //아이디가 없음
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
+		return -2; //DB 오류	
+	}
+	@Override
+	public void login(Signup signup) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

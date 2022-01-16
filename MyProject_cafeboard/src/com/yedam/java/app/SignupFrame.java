@@ -54,6 +54,31 @@ public class SignupFrame {
 		signDAO.insertSignup(signup);
 	}
 	
+	
+	
+/*	public Signup login() {
+		Signup signup = login();
+		signDAO.login(signup);
+		return signup;
+	}
+*/	
+	
+	
+/*	public static void login() {
+		Signup signup = inputloginInfo();
+		Signup inputloginInfo = SignupDAOImpl.getInstance().selectUserInfo(signup);
+		if(inputloginInfo == null) {
+			System.out.println("회원정보를 확인해주세요.");
+		}else if(inputloginInfo.getAuth() == 0){
+			//관리자일때 실행하는 메뉴
+			new AccountFrame().run();
+		}else if(inputloginInfo.getAuth() == 1) {
+			//일반회원일때 실행하는 메뉴
+		}
+		
+	}
+*/	
+	
 	public static void login() {
 		Signup signup = inputloginInfo();
 		Signup inputloginInfo = SignupDAOImpl.getInstance().selectUserInfo(signup);
