@@ -4,7 +4,7 @@ public class Signup {
 	private String id;
 	private String pw;
 	private String content;
-	
+	private int auth;
 	
 	public String getId() {
 		return id;
@@ -28,6 +28,11 @@ public class Signup {
 	public String toString() {
 		return "아이디 : " + id + ", 비밀번호 : " + pw + ", 가입동기 : " + content;
 	}
+	public int getAuth() {
+		
+		return 0;
+	}
+	
 	
 	
 }

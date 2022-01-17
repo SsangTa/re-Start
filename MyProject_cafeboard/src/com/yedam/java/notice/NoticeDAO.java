@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface NoticeDAO {
 	//전체조회
-	public List<Notice> selectAll();
+	public List<Notice> selectAllno();
 	
 	//단건조회
 	public Notice selectnotice(String noticeName);
@@ -14,4 +14,7 @@ public interface NoticeDAO {
 	
 	//글수정
 	public void update(Notice notice);
+	
+	//글삭제
+	public void delete(String noticeName);
 }

@@ -17,18 +17,18 @@ public class NoticeDAOImpl extends DAO implements NoticeDAO {
 	
 	
 	@Override
-	public List<Notice> selectAll() {
-		List<Notice> list = new ArrayList();
+	public List<Notice> selectAllno() {
+		List<Notice> list = new ArrayList<>();
 		try {
 			connect();
-			String select = "SELECT * FROM notice ORDER BY notice_name";
+			String select = "SELECT * FROM notice ORDER BY title";
 			pstmt = conn.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Notice notice = new Notice();
-				notice.setNoticeName(rs.getString("notice_name"));
-				notice.setNoticeWriter(rs.getString("notice_writer"));
-				notice.setNoticeContent(rs.getString("notice_content"));
+				notice.setNoticeName(rs.getString("title"));
+				notice.setNoticeWriter(rs.getString("writer"));
+				notice.setNoticeContent(rs.getString("content"));
 				
 				list.add(notice);
 				
@@ -117,5 +117,43 @@ public class NoticeDAOImpl extends DAO implements NoticeDAO {
 
 		
 	}
+	
+/*	public void delete(Notice notice) {
+		try {
+			connect();
+			String delete = "DELETE FROM notice WHERE title = ? ";
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setString(1, notice.getNoticeName());
+			
+			int result = pstmt.executeUpdate();
+			System.out.println(result + "건이 삭제되었습니다.");
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+	}
+*/	
+	@Override
+	public void delete(String noticeName) {
+		try {
+			connect();
+			String delete = "DELETE FROM notice WHERE title = ? ";
+			pstmt = conn.prepareStatement(delete);
+			pstmt.setString(1, noticeName);
+			
+			int result = pstmt.executeUpdate();
+			System.out.println(result + "건이 삭제되었습니다.");
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		
+	}
+	
+	
 
 }
