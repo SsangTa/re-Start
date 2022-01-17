@@ -27,7 +27,7 @@ public class Notice {
 	@Override
 	public String toString() {
 		
-		return "제목 : " + noticeName + ", 작성자 : " + noticeWriter + ", 내용 : " + noticeContent; 
+		return "제목 : " + noticeName + "| 작성자 : " + noticeWriter + "| 내용 : " + noticeContent; 
 	}
 	
 	

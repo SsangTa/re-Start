@@ -78,8 +78,9 @@ public class FreeDAOImpl extends DAO implements FreeDAO {
 	public void insert(Free free) {
 		try {
 			connect();
-			String insert = "INSERT INTO free VALUES (?,?,?,?)";
+			String insert = "INSERT INTO free(title,writer,content,time) VALUES (?,?,?,?)";
 			pstmt = conn.prepareStatement(insert);
+			//pstmt.setInt(1, free.getNum());
 			pstmt.setString(1, free.getTitle());
 			pstmt.setString(2, free.getWriter());
 			pstmt.setString(3, free.getContent());
@@ -118,21 +119,37 @@ public class FreeDAOImpl extends DAO implements FreeDAO {
 
 	}
 
-	@Override
-	public void delete(String title) {
+//	@Override
+//	public void delete(String title) {
+//		try {
+//			connect();
+//			String delete = "DELETE FROM free WHERE title = ? ";
+//			pstmt = conn.prepareStatement(delete);
+//			pstmt.setString(1, title);
+//			
+//			int result = pstmt.executeUpdate();
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconnect();
+//		}
+//
+//	}
+	
+	public void delete(int num) {
 		try {
 			connect();
-			String delete = "DELETE FROM free WHERE title = ? ";
+			String delete = "DELETE FROM free WHERE num = ?";
 			pstmt = conn.prepareStatement(delete);
-			pstmt.setString(1, title);
+			pstmt.setInt(1, num);
 			
 			int result = pstmt.executeUpdate();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			disconnect();
 		}
-
 	}
 
 }

@@ -300,19 +300,27 @@ public class SignupFrame {
 		return scanner.nextLine();
 	}
 	
-	//삭제
+//	//삭제
+//	public void deleteFree() {
+//		String title = inputFreetitle();
+//		if(signup.getId().equals()) {
+//			System.out.println("해당글을 삭제할 수 없습니다.");
+//		}else if(signup.getId().equals()){
+//			freeDAO.delete(title);
+//		}
+//		
+//		
+//	}
+	
 	public void deleteFree() {
-		String title = inputFreetitle();
-		if(signup.getId().equals()) {
-			System.out.println("해당글을 삭제할 수 없습니다.");
-		}else if(signup.getId().equals()){
-			freeDAO.delete(title);
-		}
-		
-		
+		int num = deleteFreeInfo();
+		deleteNum = FreeDAOImpl.getinstance().selectOne(num);
+		Signup = SignupDAOImpl.getInstance().selectUserInfo(signup.getId(), signup.getPw());
+		if(Signup.)
 	}
 	
-	public String inputFreetitle() {
+	
+	public String deleteFreeInfo() {
 		System.out.println("삭제할글 제목>");
 		String title = scanner.nextLine();
 		return title;

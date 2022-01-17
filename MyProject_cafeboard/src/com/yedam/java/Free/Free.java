@@ -41,7 +41,7 @@ public class Free {
 	@Override
 	public String toString() {
 		
-		return num + "제목 : " + title + " | 작성자 : " + writer + " | 내용 : " + content + " | 작성시간 : " + time;
+		return num + "번 | " + "제목 : " + title + " | 작성자 : " + writer + " | 내용 : " + content + " | 작성시간 : " + time;
 	}
 	
 	
