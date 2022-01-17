@@ -1,9 +1,17 @@
 package com.yedam.java.Free;
 
 public class Free {
+	private int num;
 	private String title;
 	private String writer;
 	private String content;
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	private String time;
 	
 	public String getTitle() {
@@ -33,7 +41,7 @@ public class Free {
 	@Override
 	public String toString() {
 		
-		return "제목 : " + title + " | 작성자 : " + writer + " | 내용 : " + content + " | 작성시간 : " + time;
+		return num + "제목 : " + title + " | 작성자 : " + writer + " | 내용 : " + content + " | 작성시간 : " + time;
 	}
 	
 	

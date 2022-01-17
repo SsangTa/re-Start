@@ -303,7 +303,7 @@ public class SignupFrame {
 	//삭제
 	public void deleteFree() {
 		String title = inputFreetitle();
-		if(signup.getId() != null) {
+		if(signup.getId().equals()) {
 			System.out.println("해당글을 삭제할 수 없습니다.");
 		}else if(signup.getId().equals()){
 			freeDAO.delete(title);
