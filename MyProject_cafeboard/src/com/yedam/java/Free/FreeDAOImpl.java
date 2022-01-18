@@ -23,11 +23,12 @@ public class FreeDAOImpl extends DAO implements FreeDAO {
 		List<Free>list = new ArrayList<>();
 		try {
 			connect();
-			String select = "SELECT * FROM free ORDER BY title";
+			String select = "SELECT * FROM free ORDER BY num ASC";
 			pstmt = conn.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Free free = new Free();
+				free.setNum(rs.getInt("num"));
 				free.setTitle(rs.getString("title"));
 				free.setWriter(rs.getString("writer"));
 				free.setContent(rs.getString("content"));
@@ -46,17 +47,18 @@ public class FreeDAOImpl extends DAO implements FreeDAO {
 	}
 
 	@Override
-	public Free selectOne(String title) {
+	public Free selectOne(int num) {
 		Free free = null;
 		try {
 			connect();
-			connect();
-			String select = "SELECT * FROM free WHERE title = ?";
+			
+			String select = "SELECT * FROM free WHERE num = ?";
 			pstmt = conn.prepareStatement(select);
-			pstmt.setString(1, title);
+			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				free = new Free();
+				free.setNum(rs.getInt("num"));
 				free.setTitle(rs.getString("title"));
 				free.setWriter(rs.getString("writer"));
 				free.setContent(rs.getString("content"));
@@ -144,7 +146,7 @@ public class FreeDAOImpl extends DAO implements FreeDAO {
 			pstmt.setInt(1, num);
 			
 			int result = pstmt.executeUpdate();
-			
+			System.out.println(result + "건이 삭제되었습니다.");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

@@ -7,7 +7,7 @@ public interface FreeDAO {
 	public List<Free> selectAll();
 	
 	//단건조회
-	public Free selectOne(String title);
+	public Free selectOne(int num);
 	
 	//등록
 	public void insert(Free free);
@@ -16,7 +16,7 @@ public interface FreeDAO {
 	public void update(Free free);
 	
 	//삭제
-	public void delete(String title);
+	public void delete(int num);
 	
 	
 	

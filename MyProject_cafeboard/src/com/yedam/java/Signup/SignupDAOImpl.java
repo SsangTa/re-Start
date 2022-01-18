@@ -83,7 +83,7 @@ public class SignupDAOImpl extends DAO implements SignupDAO {
 	}finally {
 		disconnect();
 	}	
-		return signup;
+	return signup;
 	}
 
 	
@@ -91,7 +91,7 @@ public class SignupDAOImpl extends DAO implements SignupDAO {
 		List<Signup>list = new ArrayList<>();
 		try {
 			connect();
-			String select = "SELECT * FROM Signup ORDER BY signup_id";
+			String select = "SELECT * FROM Signup ORDER BY id";
 			pstmt = conn.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {

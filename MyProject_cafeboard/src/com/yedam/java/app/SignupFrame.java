@@ -25,9 +25,16 @@ public class SignupFrame {
 	private NoticeDAO noticeDAO = NoticeDAOImpl.getInstance();
 	private List<Notice> list = new ArrayList<>();
 	
+	Signup inputloginInfo = new Signup();
+	
+	
+	Notice no = new Notice();
+	
 	Date now = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("hh시 mm분");
 	
+	Free deleteNum;
+	Free user;
 	public SignupFrame() {
 		while(true) {
 			
@@ -85,6 +92,7 @@ public class SignupFrame {
 		System.out.println();
 		System.out.println("------------------------------공지사항------------------------------");
 		selectAllno();
+		System.out.println("------------------------------------------------------------------");
 		System.out.println();
 		
 		System.out.println("===========================================================");
@@ -98,6 +106,7 @@ public class SignupFrame {
 		System.out.println();
 		System.out.println("------------------------------공지사항------------------------------");
 		selectAllno();
+		System.out.println("------------------------------------------------------------------");
 		System.out.println();
 		
 		System.out.println("=============================================");
@@ -111,10 +120,10 @@ public class SignupFrame {
 		System.out.println();
 		System.out.println("------------------------------공지사항------------------------------");
 		selectAllno();
-		
+		System.out.println("------------------------------------------------------------------");
 		System.out.println();
 		System.out.println("=============================================");
-		System.out.println("1.공지사항 쓰기 | 2.공지사항 삭제 | 3.종료");
+		System.out.println("1.공지사항 쓰기 | 2.공지사항 삭제 | 3.회원조회 | 4.종료");
 		System.out.println("=============================================");
 		System.out.println("선택 > ");
 	}
@@ -164,7 +173,7 @@ public class SignupFrame {
 	public void login() {
 		signup = inputloginInfo();
 		
-		Signup inputloginInfo = SignupDAOImpl.getInstance().selectUserInfo(signup.getId(), signup.getPw());
+		inputloginInfo = SignupDAOImpl.getInstance().selectUserInfo(signup.getId(), signup.getPw());
 		if(inputloginInfo == null) {
 			System.out.println("회원정보를 확인해주세요.");
 		}else {			
@@ -210,6 +219,9 @@ public class SignupFrame {
 				//글삭제
 				deleteNotice();
 			}else if (menuNo == 3) {
+				//회원조회
+				selectAllNotice();
+			}else if (menuNo == 4) {
 				//종료
 				end();
 			//	break;
@@ -218,7 +230,7 @@ public class SignupFrame {
 	}
 	
 	public void end() {
-		System.out.println("프로그램 종료");
+		System.out.println("******************************안녕히가세요******************************");
 	}
 	
 	public Signup inputloginInfo() {
@@ -274,6 +286,7 @@ public class SignupFrame {
 		return notice;
 	}
 	
+	
 	public void selectAll() {
 		
 		List<Free>list = freeDAO.selectAll();
@@ -282,6 +295,15 @@ public class SignupFrame {
 			System.out.println(free);
 		}
 				
+	}
+	
+	//회원조회
+	public void selectAllNotice() {
+		List<Signup>list = signDAO.selectAll();
+		for(Signup signup : list) {
+			System.out.println(signup);
+		}
+		
 	}
 	
 	//내용검색
@@ -315,15 +337,21 @@ public class SignupFrame {
 	public void deleteFree() {
 		int num = deleteFreeInfo();
 		deleteNum = FreeDAOImpl.getinstance().selectOne(num);
-		Signup = SignupDAOImpl.getInstance().selectUserInfo(signup.getId(), signup.getPw());
-		if(Signup.)
+		//inputloginInfo = SignupDAOImpl.getInstance().selectUserInfo(signup.getId(), signup.getPw());
+		if(inputloginInfo.getId().equals(deleteNum.getWriter())){
+			freeDAO.delete(num);
+		}else if(inputloginInfo.getId().equals("master")) {
+			freeDAO.delete(num);
+		}else {
+			System.out.println("회원정보를 확인해주세요.");
+		}
 	}
 	
 	
-	public String deleteFreeInfo() {
-		System.out.println("삭제할글 제목>");
-		String title = scanner.nextLine();
-		return title;
+	public int deleteFreeInfo() {
+		System.out.println("삭제할글 번호>");
+		int num = Integer.parseInt(scanner.nextLine());
+		return num;
 	}
 	
 	//관리자 삭제
