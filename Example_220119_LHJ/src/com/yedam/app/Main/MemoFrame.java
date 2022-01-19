@@ -1,5 +1,6 @@
 package com.yedam.app.Main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.yedam.app.MemoDAO.Memo;
@@ -66,28 +67,8 @@ public class MemoFrame {
 		memoDAO.insert(memo);
 	}
 	
-	public Memo inputMemoInfo() {
+	private Memo inputMemoInfo() {
 		Memo memo = new Memo();
-		System.out.println("메모번호>>");
-		memo.setMemoId(Integer.parseInt(scanner.nextLine()));
-		System.out.println("메모제목>>");
-		memo.setMemoTitle(scanner.nextLine());
-		System.out.println("메모작성자");
-		memo.setMemoWriter(scanner.nextLine());
-		System.out.println("메모내용>>");
-		memo.setMemocontent(scanner.nextLine());
-		return memo;
-		
-	}
-	
-	public void updateMemo() {
-		Memo memo = inptupMemoInfo();
-		memoDAO.update(memo);
-	}
-	
-	public Memo inptupMemoInfo() {
-		Memo memo = new Memo();
-		
 		System.out.println("메모번호>>");
 		memo.setMemoId(Integer.parseInt(scanner.nextLine()));
 		System.out.println("메모제목>>");
@@ -96,8 +77,40 @@ public class MemoFrame {
 		memo.setMemoWriter(scanner.nextLine());
 		System.out.println("메모내용>>");
 		memo.setMemocontent(scanner.nextLine());
+		return memo;
 		
 	}
+	
+//	public void updateMemo() {
+//		Memo memo = inptupMemoInfo();
+//		memoDAO.update(memo);
+//	}
+//	
+//	public Memo inptupMemoInfo() {
+//		Memo memo = new Memo();
+//		
+//		System.out.println("메모번호>>");
+//		memo.setMemoId(Integer.parseInt(scanner.nextLine()));
+//		System.out.println("메모내용>>");
+//		memo.setMemocontent(scanner.next());
+//		return memo;
+//		
+//	}
+	
+	public void updateMemo() {
+		Memo memo = inputMemoup();
+		memoDAO.update(memo);
+	}
+	
+	public Memo inputMemoup() {
+		Memo memo = new Memo();
+		System.out.println("메모번호>>");
+		memo.setMemoId(Integer.parseInt(scanner.nextLine()));
+		System.out.println("메모내용>>");
+		memo.setMemocontent(scanner.nextLine());
+		return memo;
+	}
+	
 	
 	public void deleteMemo() {
 		int memoId = inputdelMemoId();
@@ -117,16 +130,13 @@ public class MemoFrame {
 		
 		Memo memo = memoDAO.selectMemo(memoId);
 		
-		if(memo != null) {
-			System.out.println(memo);
-		}else {
-			System.out.println("해당 번호가 없습니다.");
-		}
-	}
+		System.out.println(memo);
+	}	
 	
 	public int inputMemoName() {
 		System.out.println("메모번호>>");
-		return scanner.nextLine();
+		int MemoName = Integer.parseInt(scanner.nextLine());
+		return MemoName;
 	}
 	
 	public void selectAll() {

@@ -59,7 +59,7 @@ public class Memo {
 	@Override
 	public String toString() {
 		
-		return "메모번호 : " + memoId + "메모제목 : " + memoTitle + "메모 작성자 : " + memoWriter + "메모 내용 : " + memocontent;
+		return "메모번호 : " + memoId + " | 메모제목 : " + memoTitle + " | 메모 작성자 : " + memoWriter + " | 메모 내용 : " + memocontent;
 	}
 	
 }

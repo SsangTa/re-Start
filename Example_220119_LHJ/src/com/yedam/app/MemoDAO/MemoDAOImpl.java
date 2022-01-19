@@ -74,7 +74,7 @@ public class MemoDAOImpl extends DAO implements MemoDAO {
 	public void insert(Memo memo) {
 		try {
 			connect();
-			String insert = "INSERT INTO Memo VALUES (?,?,?,?)";
+			String insert = "INSERT INTO memo VALUES (?,?,?,?)";
 			pstmt = conn.prepareStatement(insert);
 			pstmt.setInt(1, memo.getMemoId());
 			pstmt.setString(2, memo.getMemoTitle());
@@ -94,19 +94,41 @@ public class MemoDAOImpl extends DAO implements MemoDAO {
 		}
 
 	}
+	
+//	@Override
+//	public void insert(Memo memo) {
+//		try {
+//			connect();
+//			String insert = "INSERT INTO memo VALUES (?,?,?,?)";
+//			pstmt = conn.prepareStatement(insert);
+//			
+//			pstmt.setInt(1, memo.getMemoId());
+//			pstmt.setString(2, memo.getMemoTitle());
+//			pstmt.setString(3, memo.getMemoWriter());
+//			pstmt.setString(4,	memo.getMemocontent());
+//			
+//			int result = pstmt.executeUpdate();
+//		System.out.println(result + "건이 등록되었습니다.");
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//	}
 
 	@Override
 	public void update(Memo memo) {
 		try {
 			connect();
-			String update = "UPDATE Memo SET memo_id = ? WHERE memo_content = ?";
+			String update = "UPDATE memo SET memo_content = ? WHERE memo_id = ?";
 			pstmt = conn.prepareStatement(update);
-			pstmt.setInt(1, memo.getMemoId());
-			pstmt.setString(2, memo.getMemocontent());
+			pstmt.setInt(2, memo.getMemoId());
+			pstmt.setString(1, memo.getMemocontent());
 			
 			int result = pstmt.executeUpdate();
 			
-			if(result >0 ) {
+			if(result > 0 ) {
 				System.out.println(result + "건이 수정되었습니다.");
 			}
 			
@@ -122,7 +144,7 @@ public class MemoDAOImpl extends DAO implements MemoDAO {
 	public void delete(int memoId) {
 		try {
 			connect();
-			int delete = "DELETE FROM Memo WHERE memo_id = ?";
+			String delete = "DELETE FROM memo WHERE memo_id = ?";
 			pstmt = conn.prepareStatement(delete);
 			pstmt.setInt(1, memoId);
 			
